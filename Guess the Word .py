@@ -35,4 +35,4 @@ while guesses<6 :
         print("Congraaatss! You guessed the word:", chosen)
         break
 if _5letter!= chosen:
-    print("\n😢 Game over. The correct word was:", chosen)
+    print("\n Game over. The correct word was:", chosen)
