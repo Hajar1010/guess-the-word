@@ -4,35 +4,45 @@
 
 import random
 
-# 1. Define a list of valid 5-letter words
-word_list= ["apple", "grape", "stone", "brain", "zebra"]
+word_list = [
+    "apple", "grape", "stone", "brain", "zebra", "tiger", "light", "cloud", "spice", "candy",
+    "plant", "sugar", "glass", "flame", "brave", "crane", "dream", "frost", "globe",
+    "honey", "jelly", "knife", "lemon", "melon", "noble", "ocean", "pearl", "queen", "river",
+    "storm", "table", "urban", "vivid", "whale", "xenon", "youth", "woman", "charm", "blaze",
+    "bloom", "climb", "daisy", "eagle", "fable", "grind", "haste", "image", "jumpy", "karma"
+]
 
-# 2. Randomly pick one word from the list as the mystery word
-chosen=random.choice(word_list)
+chosen = random.choice(word_list)
+guesses = 0
 
-# 3. Create a loop to allow max 6 guesses from the user
-guesses=0
 print("Welcome to the Mystery Word Game!")
-#    - Ask the user to enter a 5-letter word
-while guesses<6 :
-    _5letter=input(" enter a 5-letter word").lower()
-    if len(_5letter) != 5 or _5letter not in word_list:
-        print(" Invalid word.")
+print("Guess the 5-letter word. You have 6 tries.")
+print("🟩 = correct place | 🟨 = in word wrong place | ⬜ = not in word")
+
+while guesses < 6:
+    guess = input("Enter a 5-letter word: ").lower()
+
+    if len(guess) != 5 or guess not in word_list:
+        print("Invalid word .")
         continue
-#  Give feedback:
+
+
     feedback = ""
     for i in range(5):
-        if _5letter[i] == chosen[i]:
-            feedback += _5letter[i].upper()  # Correct position
-        elif _5letter[i] in chosen:
-            feedback += _5letter[i].lower()  # Wrong position
+        if guess[i] == chosen[i]:
+            feedback += "🟩"
+        elif guess[i] in chosen:
+            feedback += "🟨"
         else:
-            feedback += "_"  # Not in the word
+            feedback += "⬜"
 
-    print("Hint: ", feedback)
+    print("Hint:", feedback)
     guesses += 1
-    if _5letter== chosen:
-        print("Congraaatss! You guessed the word:", chosen)
+
+    if guess == chosen:
+        print("\nCongratulations! You guessed the word:", chosen.upper())
         break
-if _5letter!= chosen:
-    print("\n Game over. The correct word was:", chosen)
+
+if guess != chosen:
+    print("\nGame over. The correct word was:", chosen.upper())
+
